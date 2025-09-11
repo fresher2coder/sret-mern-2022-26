@@ -50,3 +50,16 @@ Promise.any([fetchComments, fetchPosts, fetchUsers])
   .then((result) => console.log("Promise.any:", result))
   .catch((err) => console.error("Promise.any Error:", err));
 // Output after 1s: ✅ Users fetched (first success)
+
+/*
+api -> single promise
+2000 - 2025
+
+url/2000 -> promise1
+url/2004 -> promise2
+url/2008 -> promise3 
+......
+url/2024 -> promisen
+
+ui
+*/

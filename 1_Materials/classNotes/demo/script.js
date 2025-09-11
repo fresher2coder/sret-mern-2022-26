@@ -1,77 +1,54 @@
-/*
+// //promise
 
-//callback
-function display(a, callback) {
-  a = a * 2;
-  callback(a);
-}
+// const promise = new Promise((resolve, reject) => {
+//   //res & ref - CB
 
-const fn2 = (a) => {
-  console.log("fn called");
-  console.log("2 times a", a);
-};
+//   let love = true;
+//   if (love) resolve("143");
+//   else reject("Broken Heart");
+// });
 
-fn2(10);
-display(10, fn2);
+// promise
+//   .then((data) => {
+//     console.log("Marriage", data);
+//     return Number(data);
+//   })
+//   .then((data) => {
+//     data = data + 1;
+//     console.log("Marriage", data);
+//   })
+//   .catch((err) => {
+//     console.log("Break UP", err);
+//   });
 
-//fetch user from db
-//display the user details
-const fetchUser = (callback) => {
-  //fetched user
-  const user = { name: "Dineshkumar", age: 34 };
-  callback(user);
-};
-const displayUser = (user) => {
-  console.log(user);
-};
+//fetch->headers, status, json to string / axios
+//install import use
 
-fetchUser(displayUser);
-
-
-//async
-console.log("Start");
-
-setTimeout(() => {
-  console.log("5000");
-}, 5000);
-setTimeout(() => {
-  console.log("Zero");
-}, 0);
-setTimeout(() => {
-  console.log("3000");
-}, 3000);
-
-console.log("End");
-
-
-
-const promise1 = new Promise((res, rej) => {
-  //res & ref -CB
-  let love = false;
-  if (love) res("Heart");
-  else rej("Broken Heart");
-});
-
-promise1
-  .then((data) => {
-    console.log("Marraige", data); //res
-  })
-  .catch((data) => {
-    console.log("BreakUP", data); //rej
-  });
-
-*/
-
-//api calls - fetch axios(npm)
-//npm init -y
-//npm install axios
-//import
 import axios from "axios";
-
-const fetchTodo = () => {
-  const todos = axios.get("https://jsonplaceholder.typicode.com/todos");
-
-  console.log(todos);
+const fetchPosts = async () => {
+  try {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-fetchTodo();
+// fetchPosts();
+
+const createPost = async () => {
+  const newPost = {
+    userId: 12,
+    title: "javascript",
+    body: "its single thread app",
+  };
+  const response = await axios.post(
+    "https://jsonplaceholder.typicode.com/posts",
+    newPost
+  );
+  console.log(response.data);
+};
+
+createPost();
