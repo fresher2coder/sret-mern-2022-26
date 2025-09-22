@@ -1,4 +1,4 @@
-import User from "../models/userModel.js";
+import User from "../models/Users.js";
 
 // @desc    Get all users
 // @route   GET /api/users
@@ -26,10 +26,12 @@ export const getUserById = async (req, res) => {
 // @desc    Create new user
 // @route   POST /api/users
 export const createUser = async (req, res) => {
+  const { name, age, address } = req.body;
   try {
     const user = new User({
-      name: req.body.name,
-      age: req.body.age,
+      name,
+      age,
+      address,
     });
     const savedUser = await user.save();
     res.status(201).json(savedUser);
