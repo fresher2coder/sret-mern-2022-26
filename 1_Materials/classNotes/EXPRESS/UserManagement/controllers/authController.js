@@ -24,10 +24,12 @@ export const register = async (req, res) => {
 
     if (!validator.isEmail(email))
       return res.status(400).json({ error: "Invalid email" });
+
     if (password.length < 6)
       return res.status(400).json({ error: "Password must be >= 6 chars" });
 
-    const existing = await User.findOne({ email });
+    const existing = await User.findOne({ email }); //User.find()
+
     if (existing)
       return res.status(409).json({ error: "Email already in use" });
 
